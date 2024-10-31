@@ -1,0 +1,72 @@
+use("La-casa-del-te")
+
+db.createCollection("clientes", {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            title: 'Validación del objeto clientes',
+            required: ['id_cliente', 'nombre', 'direccion', 'celular'],
+            properties: {
+                id_cliente: {
+                    bsonType: 'int',
+                    description: 'Id del cliente'
+                },
+                nombre: { //Aquí se inicia el documento anidado de nombre
+                    bsonType: 'object',
+                    title: 'Validación del objeto nombre',
+                    required: ['nombre', 'apellido_paterno'],
+                    properties: {
+                        nombre: {
+                            bsonType: 'string',
+                            description: 'Nombre del cliente'
+                        },
+                        apellido_paterno: {
+                            bsonType: 'string',
+                            description: 'Apellido paterno del cliente'
+                        },
+                        apellido_materno: {
+                            bsonType: 'string',
+                            description: 'Apellido materno del cliente'
+                        }
+                    }
+                },
+                direccion: { //Aquí se inicia el documento anidado de la direccion.
+                    bsonType: 'object',
+                    title: 'Validación del objeto direccion',
+                    required: ['calle', 'numero', 'codigo_postal', 'estado'],
+                    properties: {
+                        calle: {
+                            bsonType: 'string',
+                            description: 'Nombre de la calle donde vive el cliente'
+                        },
+                        numero: {
+                            bsonType: 'string',
+                            description: 'Numero de la casa donde vive el cliente'
+                        },
+                        codigo_postal: {
+                            bsonType: 'string',
+                            description: 'Codigo postal donde vive el cliente'
+                        },
+                        estado: {
+                            bsonType: 'string',
+                            description: 'Estado donde vive el cliente'
+                        }
+                    }
+                },
+                celular:{
+                    bsonType: 'string',
+                    description: 'Numero de celular del cliente'
+                },
+                descuento: {
+                    bsonType: 'int',
+                    description: 'Descuento que tiene autorizado el cliente'
+                }
+            }
+        }
+    }
+})
+
+db.clientes.createIndex(
+    {id_cliente : 1},
+    {unique : true}
+)
