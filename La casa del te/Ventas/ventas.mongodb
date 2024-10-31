@@ -1,0 +1,37 @@
+use("La-casa-del-te")
+
+db.createCollection("ventas", {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            title: 'Validacion del objeto ventas',
+            properties: {
+                id_venta: {
+                    bsonType: 'int',
+                    description: 'Id de la venta'
+                },
+                id_cliente: {
+                    bsonType: 'int',
+                    description: 'Id del cliente al que se le realizó la venta'
+                },
+                id_trabajador: {
+                    bsonType: 'int',
+                    description: 'Id del trabajador que realizó la venta'
+                },
+                fecha: {
+                    bsonType: 'date',
+                    description: 'Fecha en la que se realizo la venta'
+                },
+                metodo_pago: {
+                    bsonType: 'string',
+                    description: 'Forma en la que fue pagada la venta'
+                }
+            }
+        }
+    }
+})
+
+db.ventas.createIndex(
+    {id_venta : 1},
+    {unique : true}
+)
