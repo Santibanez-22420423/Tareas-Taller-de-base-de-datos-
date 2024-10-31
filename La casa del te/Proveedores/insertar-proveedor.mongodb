@@ -1,0 +1,16 @@
+use("La-casa-del-te")
+
+db.proveedores.insertOne({
+    id_proveedor: 1,
+    nombre: {
+        nombre: 'Juan',
+        apellido_paterno: 'Ramírez',
+        apellido_materno: 'López'
+    },
+    direccion: {
+        calle: 'Ignacio Zaragoza',
+        numero: '181',
+        codigo_postal: '44100'
+    },
+    celular: '3336144830'
+})
