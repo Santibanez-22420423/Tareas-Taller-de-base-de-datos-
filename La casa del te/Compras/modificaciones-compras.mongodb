@@ -1,0 +1,36 @@
+use("La-casa-del-te")
+
+db.getCollectionInfos()
+
+db.runCommand({
+    collMod: 'compras',
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            title: 'Validación del objeto compras',           
+            required: ['id_compra', 'id_proveedor', 'fecha'],
+            properties: {
+                id_compra: {
+                    bsonType: 'int',
+                    description: 'Id de la compra'
+                },
+                id_proveedor: {
+                    bsonType: 'int',
+                    description: 'Id del proveedor'
+                },
+                fecha: {
+                    bsonType: 'date',
+                    description: 'Fecha en la que se realizó el pedido a proveedor'
+                },
+                metodo_pago: {
+                    bsonType: 'string',
+                    description: 'Método con el que se pagó la compra'
+                },
+                fecha_entrega: {
+                    bsonType: 'date',
+                    description: 'Fecha en la que es entregada la compra en el negocio'
+                }
+            }
+        }
+    }
+})
