@@ -1,0 +1,2 @@
+use("La-casa-del-te")
+db.compras.find()
