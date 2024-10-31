@@ -1,0 +1,39 @@
+use("La-casa-del-te")
+
+db.createCollection("compras", {
+    validator: {
+        $jsonSchema: {
+            bsonType: 'object',
+            title: 'Validación del objeto compras',
+            required: [''],
+            properties: {
+                id_compra: {
+                    bsonType: 'int',
+                    description: 'Id de la compra'
+                },
+                id_proveedor: {
+                    bsonType: 'int',
+                    description: 'Id del proveedor'
+                },
+                fecha: {
+                    bsonType: 'date',
+                    description: 'Fecha en la que se realizó el pedido a proveedor'
+                },
+                metodo_pago: {
+                    bsonType: 'string',
+                    description: 'Método con el que se pagó la compra'
+                },
+                fecha_entrega: {
+                    bsonType: 'date',
+                    description: 'Fecha en la que es entregada la compra en el negocio'
+                }
+            }
+        }
+    }
+})
+
+//Crear un índice para que las búsquedas sean más rápidas y también para que el id_compra no se duplique.
+db.compras.createIndex(
+    {id_compra : 1}, //Indexa por id
+    {unique: true} //Solo acepta id's únicos.
+)
