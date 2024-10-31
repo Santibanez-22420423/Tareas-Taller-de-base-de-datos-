@@ -1,0 +1,18 @@
+use("La-casa-del-te")
+
+db.clientes.insertOne({
+    id_cliente: 1,
+    nombre: {
+        nombre: 'Juan',
+        apellido_paterno: 'Pérez',
+        apellido_materno: 'García'
+    },
+    direccion: {
+        calle: 'Vicente Guerrero',
+        numero: '4587',
+        codigo_postal: '59000',
+        estado: 'Michoacan'
+    },
+    celular: '3531489678',
+    descuento: 5
+})
