@@ -1,0 +1,9 @@
+use("La-casa-del-te")
+
+db.ventas.insertOne({
+    id_venta: 1,
+    id_cliente: 5,
+    id_trabajador: 1,
+    fecha: new Date('2024-09-18'),
+    metodo_pago: 'Efectivo'
+})
